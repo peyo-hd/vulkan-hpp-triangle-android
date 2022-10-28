@@ -38,12 +38,12 @@ if (ANDROID)
     list(GET ANDROID_ASSETS_DIRECTORIES 0 first-android-assets-dir)
 	message(STATUS "Android Assets Directory : ${ANDROID_ASSETS_DIRECTORIES}")
     set (source "${CMAKE_CURRENT_BINARY_DIR}")
-    set (destination "${first-android-assets-dir}\\shaders")
+    set (destination "${first-android-assets-dir}/shaders")
     file(MAKE_DIRECTORY ${destination})
     foreach(SHADER ${COMPILED_SHADERS})
         add_custom_command(
             TARGET shaders PRE_BUILD
-            COMMAND ${CMAKE_COMMAND} -E copy_if_different "${source}\\${SHADER}" "${destination}\\${SHADER}" 
+            COMMAND ${CMAKE_COMMAND} -E copy_if_different "${source}/${SHADER}" "${destination}/${SHADER}" 
             DEPENDS ${destination}
             COMMENT "Copied file ${SHADER} from ${source} => ${destination}"
         )
